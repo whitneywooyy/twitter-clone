@@ -127,8 +127,12 @@ body {
 		margin-bottom: 1em;
 		box-sizing: border-box;
 	}
+	.addHeight {
+		height: 5em;
+	}
 		#tweet-controls {
 			text-align: right;
+			display: none;
 		}
 			#tweet-controls div {
 				display: inline-block;
