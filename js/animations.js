@@ -19,16 +19,23 @@ $(document).ready(function(){
 	})	// end .reply .tweet-compose blur fn 	// TO DO >> Add if statement saying, if there are characters typed in the textarea (.tweet-compose), then make it so that blur() cannot happen.
 	$(".tweet-compose").on("keypress keyup", function(){
 		var charsRemaining = 140 - ($(".tweet-compose").val().length);
-		// console.log(charsRemaining);
-		// console.log($("#char-count").html(charsRemaining));
+		console.log($("#char-count").html(charsRemaining));
+		if (charsRemaining <= 10) {
+			$("#char-count").css({'color': 'red'});
+		}
+		else {
+			$("#char-count").css({'color': '#999'});
+		}
+		disableTweet();
 	})
-
-	// var charCount = function(str, maxChars){
-	// 	if (str.length > maxChars) {
-	// 		// MAKE IT SO THAT THE COUNTER DECREASES
-	// 	}
-	// };
-	// charCount(($(".tweet-compose").val()), maxChars);
+	var disableTweet = function(){
+		if (($(".tweet-compose").val().length) > 140) {
+			$(".button").prop("disabled", true);
+		}
+		else {
+			$(".button").prop("disabled", false);
+		}
+	};
 
 
 
