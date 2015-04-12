@@ -38,13 +38,23 @@ $(document).ready(function(){
 		}
 	};
 	$("#tweet-submit").on("click", function(){
-		var newTweet = $("#tweet-content .tweet-compose").val();
-		console.log("Message " + newTweet);
-		$("#stream").prepend($(".tweet"));
-		//$(".tweet-text").prepend($("#tweet-content .tweet-compose").val());
+		var newTweetMessage = $("#tweet-content .tweet-compose").val();
+		$(".tweet:first-child").clone().prependTo($("#stream"));
+		$("#profile-summary .avatar").clone().replaceAll($(".tweet:first-child .avatar"));
+		$("#profile-summary p").clone().replaceAll($(".tweet:first-child .fullname")).addClass("fullname");
+		newTweetMessage.replaceAll(".tweet:first-child .tweet-text").addClass("tweet-text"); // THIS DOESN'T WORK
+    	newTweetMessage.removeAttr('value'); // THIS DOESN'T WORK
 	})
-		
-
-
-
+	$(".tweet").hover(function(e){
+		e.preventDefault();
+		$(".tweet-actions").show();
+	})
+	// }
+	// else {
+	// 	$(".tweet-actions").css("display": "none");
+	// }
 });	// end of script
+
+// TO DO >> 
+// Make newTweetMessage go into .tweet:first-child
+// Make tweet in dashboard disappear upon submitting Tweet
